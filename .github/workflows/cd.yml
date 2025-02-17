@@ -26,6 +26,9 @@ jobs:
         with:
           service_account_key: ${{ secrets.GCP_CREDENTIALS }}
           project_id: notely-451213
+      
+      - name: Configure Docker
+        run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
       - name: build Docker and push to Google Artifact Registry
         run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-451213/notely-ar-repo/notely:latest .
